@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+/* ---- class ---- */
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.title {
+  margin: auto;
+  width: 1200px;
+  height: auto;
+  text-align: center;
+}
+.title_menu {
+  width: 150px;
+  height: auto;
+  text-align: center;
+  display: inline-block;
+  color: darkslategrey;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.aution_main {
+  width: 1200px;
+  height: auto;
+  margin: auto;
+  text-align: center;
+}
+
+.nickname_rating {
+  width: 700px;
+  height: 70px;
+  margin: auto;
+}
+
+.profile_nickname {
+  float: left;
+}
+
+.profile_rating {
+  width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.aution_rating {
+  float: right;
+  color: darkgreen;
+  margin-top: 10px;
+  display: flex;
+}
+
+.aution_text {
+  width: 700px;
+  height: 100px;
+  margin: auto;
+  text-align: left;
+}
+
+.price_chat {
+  border: 1px solid black;
+  width: 700px;
+  height: 400px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.selected_price {
+  border: 1px solid black;
+  width: 700px;
+  height: 180px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.selected_buyer_profile {
+  width: 210px;
+  margin: auto;
+  border-radius: 10px;
+  display: flex;
+}
+/* ---- id ---- */
+
+#item_photo {
+  border-radius: 5px;
+}
+
+#profile_photo {
+  border-radius: 40px;
+  float: left;
+  margin-top: 7px;
+}
+
+#text_title {
+  margin: auto;
+  text-align: left;
+}
+
+#max_min_price {
+  float: right;
+  height: 80px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+#time1 {
+  border: 1px solid rgb(255, 224, 229);
+  background-color: rgb(255, 224, 229);
+  width: 700px;
+  margin: auto;
+  color: red;
+  font-family: "Jua", sans-serif;
+}
+
+#submit_button {
+  width: 700px;
+  height: 50px;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+#signInButton {
+  font-size: 30px;
+  width: 500px;
+  height: 50px;
+  border: 0;
+  background-color: orange;
+  color: white;
+  border-radius: 10px;
+  font-family: "Jua", sans-serif;
+}
+
+#signUpButton {
+  font-size: 30px;
+  width: 500px;
+  height: 50px;
+  border: 0;
+  background-color: orange;
+  color: white;
+  border-radius: 10px;
+  font-family: "Jua", sans-serif;
+}
