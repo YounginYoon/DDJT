@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>로그인</title>
+    <style>
+      body {
+        width: 1200px;
+        margin: auto;
+      }
+      li {
+        list-style: none;
+        align-content: center;
+        text-align: center;
+      }
+      fieldset {
+        border: 0;
+        width: 500px;
+        margin: 30px auto 0 auto;
+      }
+      input {
+        width: 490px;
+        height: 60px;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        color: darkorange;
+        font-family: 'Jua', sans-serif;
+        font-size: 60px;
+        text-align: center;
+        margin: 30px auto 0 auto;
+        width: 700px;
+      "
+    >
+      ㄷㄸㅈㅌ
+    </div>
+    <br />
+    <fieldset>
+      <form>
+        <input
+          type="email"
+          id="LoginEmail"
+          placeholder="아이디(이메일)"
+          required
+        />
+        <input
+          type="password"
+          id="LoginPassword"
+          placeholder="비밀번호"
+          required
+        />
+        <!-- <li>
+                <input
+                  type="password"
+                  id="password_check"
+                  placeholder="비밀번호 확인"
+                  required
+                />
+              </li> -->
+        <button type="submit" id="LoginButton">로그인</button>
+        <button
+          type="submit"
+          id="signUpButton"
+          style="background-color: lightgray; margin-top: 10px"
+        >
+          회원가입
+        </button>
+      </form>
+    </fieldset>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: 'AIzaSyAj-l4QrI9d0ax3Qv4nPBiCVfWkqre9XYA',
+        authDomain: 'capstone2023-57a1c.firebaseapp.com',
+        projectId: 'capstone2023-57a1c',
+        storageBucket: 'capstone2023-57a1c.appspot.com',
+        messagingSenderId: '475497513021',
+        appId: '1:475497513021:web:d66a2ba67eeed6d031ea54',
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      document
+        .getElementById('LoginButton')
+        .addEventListener('click', (event) => {
+          event.preventDefault();
+          const email = document.getElementById('LoginEmail').value;
+          const password = document.getElementById('LoginPassword').value;
+
+          firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+              // Signed in
+              console.log(userCredential);
+              var user = userCredential.user;
+              // ...
+            })
+            .catch((error) => {
+              console.log('login fail');
+              var errorCode = error.code;
+              var errorMessage = error.message;
+            });
+        });
+    </script>
+  </body>
+</html>

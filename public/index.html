@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html>
   <head>
     <meta charset="utf-8">
@@ -85,5 +86,50 @@
         }
       });
     </script>
+=======
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+  </head>
+  <body>
+    안녕하세요
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: 'AIzaSyAj-l4QrI9d0ax3Qv4nPBiCVfWkqre9XYA',
+        authDomain: 'capstone2023-57a1c.firebaseapp.com',
+        projectId: 'capstone2023-57a1c',
+        storageBucket: 'capstone2023-57a1c.appspot.com',
+        messagingSenderId: '475497513021',
+        appId: '1:475497513021:web:d66a2ba67eeed6d031ea54',
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <!-- 
+    <script>
+      const db = firebase.firestore();
+      db.collection('product')
+        .get()
+        .then((result) => {
+          result.forEach((doc) => {
+            console.log(doc.data());
+          });
+        });
+    </script> -->
+>>>>>>> 8b7d2c93b1d77891d629e15723ce64a6e6de0daa
   </body>
 </html>

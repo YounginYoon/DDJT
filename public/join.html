@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>회원가입</title>
+    <style>
+      body {
+        width: 1200px;
+        margin: auto;
+      }
+      li {
+        list-style: none;
+        align-content: center;
+        text-align: center;
+      }
+      fieldset {
+        width: 500px;
+        margin: auto;
+      }
+      input {
+        width: 490px;
+        height: 60px;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        color: darkorange;
+        font-family: 'Jua', sans-serif;
+        font-size: 60px;
+        text-align: center;
+        margin: 30px auto 0 auto;
+        width: 700px;
+      "
+    >
+      ㄷㄸㅈㅌ
+    </div>
+    <fieldset style="border-radius: 10px; border: 0">
+      <p style="margin-bottom: 20px; font-weight: bold; text-align: left">
+        회원정보를 입력해 주세요
+      </p>
+      <form>
+        <input
+          type="email"
+          id="signUpEmail"
+          placeholder="아이디(이메일)"
+          required
+        />
+        <input
+          type="password"
+          id="signUpPassword"
+          placeholder="비밀번호"
+          required
+        />
+        <!-- <li>
+          <input
+            type="password"
+            id="password_check"
+            placeholder="비밀번호 확인"
+            required
+          />
+        </li> -->
+        <input type="text" id="signUpUsername" placeholder="이름" required />
+        <input type="text" id="signUpNickname" placeholder="닉네임" required />
+        <button id="signUpButton" type="submit">가입하기</button>
+      </form>
+    </fieldset>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: 'AIzaSyAj-l4QrI9d0ax3Qv4nPBiCVfWkqre9XYA',
+        authDomain: 'capstone2023-57a1c.firebaseapp.com',
+        projectId: 'capstone2023-57a1c',
+        storageBucket: 'capstone2023-57a1c.appspot.com',
+        messagingSenderId: '475497513021',
+        appId: '1:475497513021:web:d66a2ba67eeed6d031ea54',
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const db = firebase.firestore();
+
+      document
+        .getElementById('signUpButton')
+        .addEventListener('click', (event) => {
+          event.preventDefault();
+          const email = document.getElementById('signUpEmail').value;
+          const password = document.getElementById('signUpPassword').value;
+          const name = document.getElementById('signUpUsername').value;
+          const nickname = document.getElementById('signUpNickname').value;
+
+          var user_info = {
+            이메일: email,
+            비밀번호: password,
+            이름: name,
+            닉네임: nickname,
+          };
+
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+              console.log(userCredential);
+              // Signed in
+              var user = userCredential.user;
+              user.updateProfile({ displayName: name });
+              db.collection('users')
+                .add(user_info)
+                .then((result) => {
+                  console.log(result);
+                });
+              // ...
+            })
+            .catch((error) => {
+              console.log('error');
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // ..
+            });
+        });
+    </script>
+  </body>
+</html>
