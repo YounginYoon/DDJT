@@ -55,19 +55,22 @@
           type="password"
           id="signUpPassword"
           placeholder="비밀번호"
+          onchange="isSame()"
           required
         />
-        <!-- <li>
+        <li>
           <input
             type="password"
             id="password_check"
             placeholder="비밀번호 확인"
+            onchange="isSame()"
             required
           />
-        </li> -->
+          <span id="same" style="font-size: smaller"></span>
+        </li>
         <input type="text" id="signUpUsername" placeholder="이름" required />
         <input type="text" id="signUpNickname" placeholder="닉네임" required />
-        <button id="signUpButton" type="submit">가입하기</button>
+        <button id="signInButton" type="submit">가입하기</button>
       </form>
     </fieldset>
 
@@ -97,7 +100,7 @@
       const db = firebase.firestore();
 
       document
-        .getElementById('signUpButton')
+        .getElementById('signInButton')
         .addEventListener('click', (event) => {
           event.preventDefault();
           const email = document.getElementById('signUpEmail').value;
@@ -112,28 +115,56 @@
             닉네임: nickname,
           };
 
-          firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-              console.log(userCredential);
-              // Signed in
-              var user = userCredential.user;
-              user.updateProfile({ displayName: name });
-              db.collection('users')
-                .add(user_info)
-                .then((result) => {
-                  console.log(result);
-                });
-              // ...
-            })
-            .catch((error) => {
-              console.log('error');
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              // ..
-            });
+          if (isSame() == true) {
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(email, password)
+              .then((userCredential) => {
+                console.log(userCredential);
+                // Signed in
+                var user = userCredential.user;
+                user.updateProfile({ displayName: nickname });
+                db.collection('users')
+                  .add(user_info)
+                  .then((result) => {
+                    console.log(result);
+                    location.href = 'index.html';
+                  });
+                // ...
+              })
+              .catch((error) => {
+                console.log('error');
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ..
+              });
+          } else {
+            console.log('가입 실패');
+            alert('비밀번호를 확인해 주세요.');
+          }
         });
+    </script>
+
+    <script>
+      function isSame() {
+        var pw = document.getElementById('signUpPassword').value;
+        var confirm_pw = document.getElementById('password_check').value;
+        if (!pw || !confirm_pw) {
+          document.getElementById('same').innerHTML =
+            '비밀번호를 입력해 주세요.';
+          document.getElementById('same').style.color = 'red';
+          return false;
+        } else if (pw != confirm_pw) {
+          document.getElementById('same').innerHTML =
+            '비밀번호가 일치하지 않습니다.';
+          document.getElementById('same').style.color = 'red';
+          return false;
+        } else {
+          document.getElementById('same').innerHTML = '비밀번호가 일치합니다';
+          document.getElementById('same').style.color = 'blue';
+          return true;
+        }
+      }
     </script>
   </body>
 </html>

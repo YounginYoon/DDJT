@@ -56,19 +56,12 @@
           placeholder="비밀번호"
           required
         />
-        <!-- <li>
-                <input
-                  type="password"
-                  id="password_check"
-                  placeholder="비밀번호 확인"
-                  required
-                />
-              </li> -->
         <button type="submit" id="LoginButton">로그인</button>
         <button
           type="submit"
-          id="signUpButton"
+          id="signInButton"
           style="background-color: lightgray; margin-top: 10px"
+          onclick="location.href='join.html';"
         >
           회원가입
         </button>
@@ -112,12 +105,14 @@
               // Signed in
               console.log(userCredential);
               var user = userCredential.user;
+              location.href = 'index.html';
               // ...
             })
             .catch((error) => {
               console.log('login fail');
               var errorCode = error.code;
               var errorMessage = error.message;
+              alert('로그인 실패');
             });
         });
     </script>

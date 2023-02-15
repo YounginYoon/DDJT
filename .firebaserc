@@ -1,9 +1,5 @@
 {
   "projects": {
-<<<<<<< HEAD
-    "default": "capstone2-real"
-=======
     "default": "capstone2023-57a1c"
->>>>>>> 8b7d2c93b1d77891d629e15723ce64a6e6de0daa
   }
 }

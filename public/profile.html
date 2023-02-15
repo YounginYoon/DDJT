@@ -37,21 +37,22 @@
   <body>
     <div class="title">
       <ul style="list-style: none">
-        <li
+        <a
+          href="index.html"
           class="title_menu"
           style="
             color: darkorange;
             font-family: 'Jua', sans-serif;
             font-size: xx-large;
+            text-decoration-line: none;
           "
-          ;
         >
           ㄷㄸㅈㅌ
-        </li>
-        <li class="title_menu">포카교환</li>
-        <li class="title_menu">경매</li>
-        <li class="title_menu">공지사항</li>
-        <li class="title_menu">고객센터</li>
+        </a>
+        <a class="title_menu">포카교환</a>
+        <a class="title_menu">경매</a>
+        <a class="title_menu">공지사항</a>
+        <a class="title_menu">고객센터</a>
       </ul>
     </div>
     <div class="parent">
@@ -59,15 +60,11 @@
         <aside>
           <br />
           <div class="namecard">
-            <img src="../pages/assets/IM.jpg" alt="" width="200" height="200" />
+            <img src="./assets/IM.jpg" alt="" width="200" height="200" />
           </div>
           <div class="detail">
             <p style="text-align: center; margin: auto">
-              <img
-                src="../pages/assets/gloves.png"
-                width="40px"
-                height="40px"
-              />
+              <img src="./assets/gloves.png" width="40px" height="40px" />
             </p>
             <h3>당신의아들을저에게</h3>
             <p style="font-weight: lighter">▶ 자기소개</p>
@@ -116,5 +113,30 @@
         </div>
       </div>
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: 'AIzaSyAj-l4QrI9d0ax3Qv4nPBiCVfWkqre9XYA',
+        authDomain: 'capstone2023-57a1c.firebaseapp.com',
+        databaseURL: 'https://capstone2023-57a1c-default-rtdb.firebaseio.com',
+        projectId: 'capstone2023-57a1c',
+        storageBucket: 'capstone2023-57a1c.appspot.com',
+        messagingSenderId: '475497513021',
+        appId: '1:475497513021:web:d66a2ba67eeed6d031ea54',
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
