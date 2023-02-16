@@ -125,7 +125,9 @@ firebase.initializeApp(firebaseConfig);
                     <img src="${doc.data().이미지}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">${doc.data().제목}</h5>
+                      <p class="card-text">${doc.data().가격}원</p>
                       <p class="card-text">${doc.data().설명}</p>
+                      
                     </div>
                   </div>
                 </div>`;
