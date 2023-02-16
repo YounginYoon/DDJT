@@ -135,7 +135,8 @@
       firebase.initializeApp(firebaseConfig);
 
       //user 정보 확인
-      var user_info = localStorage.getItem('user');
+      var user_info = sessionStorage.getItem('user');
+
       if (user_info) {
         $('#Show_Nickname').html(JSON.parse(user_info).displayName);
         document.getElementById('LogoutButton').style.display = 'block';
@@ -150,9 +151,9 @@
         if (user) {
           console.log(user.uid);
           console.log(user.displayName);
-          localStorage.setItem('user', JSON.stringify(user));
+          sessionStorage.setItem('user', JSON.stringify(user));
         } else {
-          localStorage.removeItem('user');
+          sessionStorage.removeItem('user');
         }
       });
 
