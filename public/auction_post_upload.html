@@ -25,20 +25,21 @@
   
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
+    <!-- firebase 아이디 -->
   <script>
-      const firebaseConfig = {
-        apiKey: "AIzaSyAj-l4QrI9d0ax3Qv4nPBiCVfWkqre9XYA",
-        authDomain: "capstone2023-57a1c.firebaseapp.com",
-        databaseURL: "https://capstone2023-57a1c-default-rtdb.firebaseio.com",
-        projectId: "capstone2023-57a1c",
-        storageBucket: "capstone2023-57a1c.appspot.com",
-        messagingSenderId: "475497513021",
-        appId: "1:475497513021:web:d66a2ba67eeed6d031ea54"
-      };
+    const firebaseConfig = {
+      apiKey: "AIzaSyAj-l4QrI9d0ax3Qv4nPBiCVfWkqre9XYA",
+      authDomain: "capstone2023-57a1c.firebaseapp.com",
+      databaseURL: "https://capstone2023-57a1c-default-rtdb.firebaseio.com",
+      projectId: "capstone2023-57a1c",
+      storageBucket: "capstone2023-57a1c.appspot.com",
+      messagingSenderId: "475497513021",
+      appId: "1:475497513021:web:d66a2ba67eeed6d031ea54"
+    };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-  </script>
+firebase.initializeApp(firebaseConfig);
+</script>
 
 <!--  네비바 -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -81,19 +82,19 @@ const app = initializeApp(firebaseConfig);
         <div class="container px-4 py-5" id="custom-cards">
               <div class="container mt-3">
                 <input type="text" class="form-control mt-2" id="title" placeholder="제목">
-                <select class="form-select form-select-sm"  aria-label=".form-select-sm example">
+                <select id = "idol" class="form-select form-select-sm mt-2 "  aria-label=".form-select-sm example">
                   <option selected>내가 파는 아이돌</option>
                   <option value="1">NCT</option>
                   <option value="2">몬스타엑스</option>
                   <option value="3">SVT</option>
-                  <option value="3">여기서찾자!</option>
+                  <option value="4">여기서찾자!</option>
                 </select>
-                <select class="form-select form-select-sm"  aria-label=".form-select-sm example">
+                <select id = 'category' class="form-select form-select-sm mt-2 "  aria-label=".form-select-sm example">
                   <option selected>카테고리</option>
                   <option value="1">앨범</option>
                   <option value="2">MD</option>
                   <option value="3">티켓</option>
-                  <option value="3">ETC</option>
+                  <option value="4">ETC</option>
                 </select>
                 <input type="text" class="form-control mt-2" id="price" placeholder="가격">
                 <label for="exampleFormControlTextarea1" class="form-label" >상품 설명</label>
@@ -114,10 +115,13 @@ const app = initializeApp(firebaseConfig);
         <script>
           const db = firebase.firestore()
           const storage = firebase.storage()
+          
       
       
           $('#send').click(function(){
               var file = document.querySelector('#image').files[0];
+              var el = document.getElementById('idol');
+              var sel = document.getElementById('idol').options.selectedIndex;
               var storageRef = storage.ref();
               var 저장경로 = storageRef.child('image/'+file.name);
               var 업로드작업 = 저장경로.put(file)
@@ -139,7 +143,9 @@ const app = initializeApp(firebaseConfig);
                           가격: $('#price').val(),
                           설명: $('#content').val(),
                           날짜: new Date(),
-                          이미지: url
+                          이미지: url,
+                          아이돌:  el.options[sel].value,
+                          카테고리: $('#category').val()
       
       
                       }
