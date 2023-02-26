@@ -164,7 +164,7 @@ firebase.initializeApp(firebaseConfig);
                           이미지: url,
                           아이돌:  el.options[sel].value,
                           카테고리: $('#category').val(),
-                          업로드uid: JSON.parse( sessionStorage.getItem('user') ).uid,
+                          uid: JSON.parse( sessionStorage.getItem('user') ).uid,
                           작성자:JSON.parse( sessionStorage.getItem('user') ).displayName
       
       
