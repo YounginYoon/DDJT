@@ -5,8 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>돌뜰장터</title>
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./assets/main.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
     <style>
       * {
         margin: 0;
@@ -16,28 +22,80 @@
         text-decoration: none;
         color: #000;
       }
+
+      .nav-link {
+        color: rgb(73, 73, 73);
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: large;
+        font-weight: bold;
+        text-decoration-line: none;
+      }
+      .nav-item {
+        margin-top: 8px;
+      }
     </style>
   </head>
   <body>
+    <!-- 네비바 start -->
     <div class="container">
-      <header id="intro">
-        <h1>
-          <a href="index.html">돌뜰장터</a>
-        </h1>
+      <ul id="nav2" class="nav justify-content-around bg-white">
+        <li class="nav-item-title">
+          <a
+            class="nav-link"
+            href="index.html"
+            style="
+              color: darkorange;
+              font-family: 'Jua', sans-serif;
+              font-size: xx-large;
+              text-decoration-line: none;
+            "
+            >ㄷㄸㅈㅌ</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login.html" id="index_LoginButton"
+            >로그인</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html" id="Show_Nickname"></a>
+        </li>
+        <li class="nav-item active">
+          <img
+            id="index_profile_img"
+            width="50"
+            height="50"
+            style="border-radius: 100px"
+          />
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href=""
+            id="index_LogoutButton"
+            style="color: darkgray"
+            >로그아웃</a
+          >
+        </li>
 
-        <nav>
-          <ul>
-            <li class="one"><a href="#">생일</a></li>
-            <li class="two">
-              <a href="login.html" id="LoginButton">로그인</a>
-            </li>
-            <li class="three">
-              <a id="Show_Nickname">nickname</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
+        <form
+          class="navbar-form pull-right"
+          role="search"
+          style="margin-top: 10px"
+        >
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" />
+            <div class="input-group-btn">
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </ul>
+    </div>
+    <!-- 네비바 end-->
+    <div class="container">
       <main role="main" id="main">
         <article class="one">
           <h2>경매</h2>
@@ -105,9 +163,6 @@
             <h2>AI추천</h2>
           </a>
         </article>
-        <button type="submit" id="LogoutButton" style="display: none">
-          로그아웃
-        </button>
       </main>
     </div>
 
@@ -118,6 +173,11 @@
     <script
       src="https://code.jquery.com/jquery-3.6.3.min.js"
       integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
 
@@ -136,15 +196,21 @@
 
       //user 정보 확인
       var user_info = sessionStorage.getItem('user');
-
+      const db = firebase.firestore();
+      //location.reload();
       if (user_info) {
         $('#Show_Nickname').html(JSON.parse(user_info).displayName);
-        document.getElementById('LogoutButton').style.display = 'block';
-        document.getElementById('LoginButton').style.display = 'none';
-        document.getElementById('Show_Nickname').href = 'profile.html';
+        var link_uid = '/profile.html?uid=' + JSON.parse(user_info).uid;
+        document.getElementById('index_LogoutButton').style.display = 'block';
+        document.getElementById('index_LoginButton').style.display = 'none';
+        document.getElementById('Show_Nickname').href = link_uid;
+        document.getElementById('index_profile_img').src =
+          JSON.parse(user_info).photoURL;
       } else {
-        document.getElementById('LogoutButton').style.display = 'none';
-        document.getElementById('LoginButton').style.display = 'block';
+        document.getElementById('index_LogoutButton').style.display = 'none';
+        document.getElementById('index_LoginButton').style.display = 'block';
+        document.getElementById('Show_Nickname').style.display = 'none';
+        document.getElementById('index_profile_img').style.display = 'none';
       }
 
       firebase.auth().onAuthStateChanged((user) => {
@@ -152,13 +218,21 @@
           console.log(user.uid);
           console.log(user.displayName);
           sessionStorage.setItem('user', JSON.stringify(user));
+
+          if (!user.photoURL) {
+            var basic_url =
+              'https://firebasestorage.googleapis.com/v0/b/capstone2023-57a1c.appspot.com/o/profile_image%2Fbasic_profile_img%2F%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?alt=media&token=fe7d1412-e30a-4396-9034-6b9d2f4a3781';
+            user.updateProfile({ photoURL: basic_url });
+            document.getElementById('previewImg').src = user.photoURL;
+            window.location.reload();
+          }
         } else {
           sessionStorage.removeItem('user');
         }
       });
 
       document
-        .getElementById('LogoutButton')
+        .getElementById('index_LogoutButton')
         .addEventListener('click', (event) => {
           firebase
             .auth()
