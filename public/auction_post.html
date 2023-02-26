@@ -125,14 +125,14 @@ firebase.initializeApp(firebaseConfig);
                 <option value="1">NCT</option>
                 <option value="2">몬스타엑스</option>
                 <option value="3">SVT</option>
-                <option value="3">여기서찾자!</option>
+                <option value="4">여기서찾자!</option>
             </select>
             <select id = "category" class="form-select form-select-sm mt-2"  aria-label=".form-select-sm example">
                 <option selected>카테고리</option>
                 <option value="1">앨범</option>
                 <option value="2">MD</option>
                 <option value="3">티켓</option>
-                <option value="3">ETC</option>
+                <option value="4">ETC</option>
             </select>
             
             <button type="button" class="btn btn-primary btn-sm mt-2" id = 'search'>검색</button>
@@ -149,8 +149,28 @@ firebase.initializeApp(firebaseConfig);
             const DB = firebase.firestore();
 
             $('#search').click(function(){
-              console.log("ok")
-            //   DB.collection("product").whereEqualTo("카테고리",  "1").get().then((결과)=>{
+              console.log("카테고리",$('#category').val())
+               DB.collection("product").where("카테고리", "==", $('#category').val()).where("아이돌","==",$('#idol').val()).get().then((결과)=>{
+               결과.forEach((doc)=>{
+                 console.log(doc)
+                 var 템플릿 = `
+                 <div class="col">
+                   <div class="card">
+                     <img src="${doc.data().이미지}" class="card-img-top" alt="...">
+                     <div class="card-body">
+                       <h5 class="title"><a href = "auction_detail.html?id=${doc.id}">${doc.data().제목}</a></h5>
+                       <p class="card-text">${doc.data().가격}원</p>
+                       <p class="card-text">${doc.data().설명}</p>
+                      
+                     </div>
+                   </div>
+                 </div>`;
+               $('.container2').append(템플릿)
+               })
+             })
+            })
+            
+            // DB.collection('product').get().then((결과)=>{
             //   결과.forEach((doc)=>{
             //     console.log(doc)
             //     var 템플릿 = `
@@ -160,7 +180,7 @@ firebase.initializeApp(firebaseConfig);
             //         <div class="card-body">
             //           <h5 class="title"><a href = "auction_detail.html?id=${doc.id}">${doc.data().제목}</a></h5>
             //           <p class="card-text">${doc.data().가격}원</p>
-            //           <p class="card-text">${doc.data().설명}</p>
+            //           <p class="card-text">${doc.data().작성자}</p>
                       
             //         </div>
             //       </div>
@@ -168,26 +188,6 @@ firebase.initializeApp(firebaseConfig);
             //   $('.container2').append(템플릿)
             //   })
             // })
-            })
-            
-            DB.collection('product').get().then((결과)=>{
-              결과.forEach((doc)=>{
-                console.log(doc)
-                var 템플릿 = `
-                <div class="col">
-                  <div class="card">
-                    <img src="${doc.data().이미지}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="title"><a href = "auction_detail.html?id=${doc.id}">${doc.data().제목}</a></h5>
-                      <p class="card-text">${doc.data().가격}원</p>
-                      <p class="card-text">${doc.data().작성자}</p>
-                      
-                    </div>
-                  </div>
-                </div>`;
-              $('.container2').append(템플릿)
-              })
-            })
           
           </script>
           
