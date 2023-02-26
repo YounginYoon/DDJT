@@ -145,7 +145,12 @@
     <div class="parent">
       <div class="profile">
         <div class="profile_img_prev">
-          <img id="previewImg" width="200" style="border-radius: 20px" />
+          <img
+            id="previewImg"
+            width="200px"
+            height="250px"
+            style="border-radius: 20px; object-fit: cover"
+          />
           <label id="input-file-button" for="profile_img">프로필 변경</label>
           <input
             type="file"
@@ -328,7 +333,7 @@
                   var profile_url = { 프로필: url };
                   db.collection('users').doc(user_uid).update(profile_url);
                   user.updateProfile({ photoURL: url });
-                  window.location.reload();
+                  location.reload();
                 });
               }
             );
