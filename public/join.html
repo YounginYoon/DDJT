@@ -124,8 +124,10 @@
                 // Signed in
                 var user = userCredential.user;
                 user.updateProfile({ displayName: nickname });
+
                 db.collection('users')
-                  .add(user_info)
+                  .doc(user.uid)
+                  .set(user_info)
                   .then((result) => {
                     console.log(result);
                     location.replace('login.html');

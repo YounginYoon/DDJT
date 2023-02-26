@@ -56,11 +56,13 @@
           placeholder="비밀번호"
           required
         />
-        <button type="submit" id="LoginButton">로그인</button>
+        <button type="submit" id="LoginButton" style="cursor: pointer">
+          로그인
+        </button>
         <button
           type="submit"
           id="signInButton"
-          style="background-color: lightgray; margin-top: 10px"
+          style="background-color: lightgray; margin-top: 10px; cursor: pointer"
           onclick="location.href='join.html';"
         >
           회원가입
@@ -112,7 +114,8 @@
                 .signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
                   console.log(userCredential);
-                  location.replace('index.html');
+                  window.location.href = 'index.html';
+                  //location.reload(true);
                 });
             })
             .catch((error) => {
