@@ -83,7 +83,7 @@ firebase.initializeApp(firebaseConfig);
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-outline-success" type="submit" id="search">Search</button>
             </form>
           </div>
         </div>
@@ -100,14 +100,14 @@ firebase.initializeApp(firebaseConfig);
                 <button type="button" class="btn btn-primary btn-sm mt-3" >글 올리기</button>
             </a>
             
-            <select class="form-select form-select-sm mt-2"  aria-label=".form-select-sm example">
+            <select id = "idol" class="form-select form-select-sm mt-2"  aria-label=".form-select-sm example">
                 <option selected>내가 찾는 아이돌</option>
                 <option value="1">NCT</option>
                 <option value="2">몬스타엑스</option>
                 <option value="3">SVT</option>
                 <option value="3">여기서찾자!</option>
             </select>
-            <select class="form-select form-select-sm mt-2"  aria-label=".form-select-sm example">
+            <select id = "category" class="form-select form-select-sm mt-2"  aria-label=".form-select-sm example">
                 <option selected>카테고리</option>
                 <option value="1">앨범</option>
                 <option value="2">MD</option>
@@ -127,6 +127,7 @@ firebase.initializeApp(firebaseConfig);
       
           <script>
             const DB = firebase.firestore();
+            
             DB.collection('product').get().then((결과)=>{
               결과.forEach((doc)=>{
                 console.log(doc)
