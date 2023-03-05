@@ -138,8 +138,10 @@ firebase.initializeApp(firebaseConfig);
             
             db.collection('product').doc( 쿼리스트링.get('id') ).get().then((result)=>{
                 $('#title').val(result.data().제목)
+                $('#idol').val(result.data().아이돌)
                 $('#content').val(result.data().설명)
                 $('#price').val(result.data().가격)
+                $('#category').val(result.data().카테고리)
                 
             })
 
