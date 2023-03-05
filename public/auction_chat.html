@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="other.css">
-    <title>상세페이지</title>
+    <title>채팅페이지</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -105,57 +105,20 @@ firebase.initializeApp(firebaseConfig);
     
     <main>
 
-        <div class="container2 m-3">
-            <button id = "edit">수정하기</button>
-            <button id = "chat">채팅하기</button>
+        <div class="container">
+            채팅하기페이지입니다.
              
-        </div>
-        
-      
-          <script>
-            const db = firebase.firestore();
-  
-            var 쿼리스트링 = new URLSearchParams(window.location.search);
-            var 판매자uid;
-            var 상품;
-            db.collection('product').doc(쿼리스트링.get('id')).get().then((result)=>{
-                console.log(result.data())
-                판매자uid = result.data().uid;
-                상품 = result.data().제목;
-                var 템플릿 = `
-                <div class="detail-pic my-4" style="background-image: url('${result.data().이미지}');"></div>
-                <div>
-                    
-                <h5>올린사람 : ${result.data().작성자}</h5>
-                <hr>
-                <h5 class="title">${result.data().제목}</h5>
-                <p class="date">${result.data().날짜.toDate()}</p>
-                <p class="date">가격: ${result.data().가격}</p>
-                <p class="price">${result.data().설명}</p>
-                </div>`;
-                $('.container2').append(템플릿)
-            })
-
-            
-            $('#edit').click(function(){
-              window.location.href = 'auction_edit.html?id=' + 쿼리스트링.get('id')
-            })
-
-            $('#chat').click(function(){
-              var 채팅정보 = {
-                who : [JSON.parse( sessionStorage.getItem('user') ).uid, 판매자uid],
-                상품명: 상품,
-                날짜: new Date()
-              }
-              db.collection('chatroom').add(채팅정보).then((result)=>{
-                window.location.href = 'auction_chat.html?id=' + 쿼리스트링.get('id')
-              }).catch((error)=>{
-                  console.log(error)
-              })
-
-
-              })
-          </script>
+         </div>
+         
+         
+         <script>
+           const DB = firebase.firestore();
+         
+         
+           
+           
+         
+         </script>
           
         
         
