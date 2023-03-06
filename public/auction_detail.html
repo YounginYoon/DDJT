@@ -13,7 +13,35 @@
       crossorigin="anonymous"
     />
 
-    <style></style>
+    <link rel="stylesheet" href="./assets/main.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+      .nav-link {
+        color: rgb(73, 73, 73);
+        font-family: 'Jua', sans-serif;
+        font-size: 20px;
+        text-decoration-line: none;
+      }
+      .nav-item {
+        margin-top: 5px;
+        font-family: 'Jua', sans-serif;
+      }
+      .card {
+        height: 25rem;
+      }
+      .card-img-top {
+        height: 15rem;
+        object-fit: cover;
+      }
+    </style>
   </head>
   <body>
     <script
@@ -59,61 +87,157 @@
       firebase.initializeApp(firebaseConfig);
     </script>
 
-    <!-- 네비바 start-->
+    <!-- 네비바 start -->
     <div class="container">
       <ul id="nav2" class="nav justify-content-around bg-white">
         <li class="nav-item-title">
           <a
-            class="nav-link active"
+            class="nav-link"
             href="index.html"
             style="
               color: darkorange;
               font-family: 'Jua', sans-serif;
-              font-size: xx-large;
+              font-size: 40px;
+              font-weight: bold;
               text-decoration-line: none;
             "
             >ㄷㄸㅈㅌ</a
           >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">경매</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">교환</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">커뮤니티</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">고객센터</a>
-        </li>
-        <!-- <li class="nav-item">
-          <a
-            class="nav-link"
-            href=""
-            style="color: darkgray"
-            id="profile_LogoutButton"
-            >로그아웃</a
-          >
-        </li> -->
-
         <form
           class="navbar-form pull-right"
           role="search"
-          style="margin-top: 10px"
+          style="width: 450px; margin-top: 10px; margin: auto"
         >
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" />
-            <div class="input-group-btn">
-              <button class="btn btn-outline-success" type="submit">
+            <input
+              type="text"
+              class="form-control bg-light rounded-start-pill rounded-end-pill"
+              placeholder="어떤 상품을 찾으시나요?"
+              style="font-size: 13px"
+            />
+            <!-- <div class="input-group-btn">
+              <button
+                class="btn bg-light border-1 rounded-end-pill"
+                type="submit"
+              >
                 Search
               </button>
-            </div>
+            </div> -->
           </div>
         </form>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="login.html"
+            id="auction_detail_LoginButton"
+            style="
+              font-size: 19px;
+              margin-top: 13px;
+              color: rgb(65, 88, 71);
+              font-family: 'Jua', sans-serif;
+            "
+            >로그인</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="join.html"
+            id="auction_detail_JoinButton"
+            style="
+              font-size: 19px;
+              margin-top: 13px;
+              color: rgb(65, 88, 71);
+              font-family: 'Jua', sans-serif;
+            "
+            >회원가입</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="profile.html"
+            id="auction_detail_Show_Nickname"
+            style="font-size: 15px; margin-top: 15px"
+          ></a>
+        </li>
+        <li class="nav-item">
+          <img
+            id="auction_detail_profile_img"
+            width="40"
+            height="40"
+            style="border-radius: 100px; margin-top: 15px"
+          />
+        </li>
+        <li class="nav-item" style="margin: auto">
+          <a
+            class="nav-link"
+            href=""
+            id="auction_detail_LogoutButton"
+            style="
+              color: darkgray;
+              font-size: 14px;
+              font-weight: bold;
+              margin-top: 3px;
+              font-family: 'Noto', sans-serif;
+            "
+            ;
+            >로그아웃</a
+          >
+        </li>
       </ul>
     </div>
     <!-- 네비바 end-->
+
+    <!-- 추가 네비바 start -->
+    <div class="nav justify-content-around bg-white">
+      <div class="row">
+        <div class="col">
+          <ul class="nav nav-tabs">
+            <li
+              class="nav-item active"
+              style="width: 250px; height: auto; text-align: center"
+            >
+              <a class="nav-link" href="auction_post.html">경매</a>
+            </li>
+            <li
+              class="nav-item active"
+              style="width: 250px; text-align: center"
+            >
+              <a class="nav-link" href="#">교환</a>
+            </li>
+            <li
+              class="nav-item active"
+              style="width: 250px; text-align: center"
+            >
+              <a class="nav-link" href="#">공지사항</a>
+            </li>
+            <li
+              class="nav-item active dropdown"
+              style="width: 250px; text-align: center"
+            >
+              <a
+                class="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                href="#"
+                >커뮤니티</a
+              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">FAQ</a>
+                <a class="dropdown-item" href="#">1:1 문의</a>
+                <a class="dropdown-item" href="#">신고합니다</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- 추가 네비바 end -->
 
     <main>
       <div class="container2 m-3">
@@ -142,7 +266,7 @@
                     
                 <h5>올린사람 : ${result.data().작성자}</h5>
                 <hr>
-                <h5 class="title">${result.data().제목}</h5>
+                <h5 class="detail_card_title">${result.data().제목}</h5>
                 <p class="date">${result.data().날짜.toDate()}</p>
                 <p class="date">가격: ${result.data().가격}</p>
                 <p class="price">${result.data().설명}</p>
@@ -206,5 +330,71 @@
       </ul>
       <p class="text-center text-muted">© 2022 Company, Inc</p>
     </footer>
+    <script>
+      //user 정보 확인
+      var user_info = sessionStorage.getItem('user');
+
+      //location.reload();
+      if (user_info) {
+        $('#auction_detail_Show_Nickname').html(
+          JSON.parse(user_info).displayName
+        );
+        var link_uid = '/profile.html?uid=' + JSON.parse(user_info).uid;
+        document.getElementById('auction_detail_LogoutButton').style.display =
+          'block';
+        document.getElementById('auction_detail_LoginButton').style.display =
+          'none';
+        document.getElementById('auction_detail_JoinButton').style.display =
+          'none';
+        document.getElementById('auction_detail_Show_Nickname').href = link_uid;
+        document.getElementById('auction_detail_profile_img').src =
+          JSON.parse(user_info).photoURL;
+      } else {
+        document.getElementById('auction_detail_LogoutButton').style.display =
+          'none';
+        document.getElementById('auction_detail_LoginButton').style.display =
+          'block';
+        document.getElementById('auction_detail_Show_Nickname').style.display =
+          'none';
+        document.getElementById('auction_detail_profile_img').style.display =
+          'none';
+      }
+
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          console.log(user.uid);
+          console.log(user.displayName);
+          sessionStorage.setItem('user', JSON.stringify(user));
+
+          if (!user.photoURL) {
+            var basic_url =
+              'https://firebasestorage.googleapis.com/v0/b/capstone2023-57a1c.appspot.com/o/profile_image%2Fbasic_profile_img%2F%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?alt=media&token=fe7d1412-e30a-4396-9034-6b9d2f4a3781';
+            user.updateProfile({ photoURL: basic_url });
+            document.getElementById('previewImg').src = user.photoURL;
+            window.location.reload();
+          }
+        } else {
+          sessionStorage.removeItem('user');
+        }
+      });
+
+      document
+        .getElementById('auction_detail_LogoutButton')
+        .addEventListener('click', (event) => {
+          firebase
+            .auth()
+            .signOut()
+            .then(() => {
+              // Sign-out successful.
+              console.log('Logout Success');
+              window.location.reload();
+            })
+            .catch((error) => {
+              // An error happened.
+              console.log('Logout Fail');
+              console.log(error);
+            });
+        });
+    </script>
   </body>
 </html>
