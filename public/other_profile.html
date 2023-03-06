@@ -12,16 +12,12 @@
     />
     <link rel="stylesheet" href="./assets/main.css" />
     <link rel="stylesheet" href="./assets/style.css" />
-
-    <!-- <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    /> -->
+    <link rel="stylesheet" href="./assets/border_custom.css" />
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
-    <title>프로필</title>
+    <title>{닉네임} | 돌뜰장터</title>
     <style>
       * {
         font-family: 'Noto Sans KR', sans-serif;
@@ -40,7 +36,6 @@
         background-color: rgb(255, 238, 236);
         */
         width: 800px;
-        height: 500px;
         margin: 50px auto;
         display: flex;
       }
@@ -195,19 +190,9 @@
             height="250px"
             style="border-radius: 20px; object-fit: cover"
           />
-          <div style="display: flex; float: right">
-            <label id="input-file-button" for="profile_img">변경</label>
-            <button id="profile_delete_btn" style="border: none">삭제</button>
-          </div>
-          <input
-            type="file"
-            id="profile_img"
-            accept="image/*"
-            style="display: none"
-          />
         </div>
 
-        <div class="detail" style="margin-top: 10px">
+        <div class="detail" style="margin-top: 20px">
           <div style="display: inline-flex; margin-top: 20px">
             <h6
               id="profile_nickname"
@@ -232,27 +217,9 @@
               >
                 ▶ 자기소개
               </h9>
-              <button
-                id="profile_edit_btn"
-                type="submit"
-                onclick="window.open('edit_text.html', '수정하기', 'width=500, height=250')"
-              >
-                edit
-              </button>
             </div>
             <h9 id="intro_Text"></h9>
           </div>
-          <div
-            style="
-              font-weight: lighter;
-              color: darkgreen;
-              font-family: 'Jua', sans-serif;
-              margin-top: 15px;
-            "
-          >
-            ▶ 포인트
-          </div>
-          <div style="list-style: none">500 P</div>
         </div>
       </div>
       <hr style="margin-left: 10px" />
@@ -299,19 +266,6 @@
         </form>
       </div>
     </div>
-    <footer style="height: 300px; background-color: #f8f8f8">
-      <div style="padding: 50px">
-        <p style="color: rgba(70, 70, 70, 0.823); font-size: 13px">
-          (주) 돌뜰장터 정보
-        </p>
-        <span style="font-size: 13px; color: rgb(173, 173, 173)">
-          (주) 돌뜰장터 | 대표자 : 윤영인, 김은원<br />
-          대표번호 : 010-8450-2528<br />
-          플랫폼 : Firebase, Visual Studio Code<br />
-          메일 : duddlsdbs@sogang.ac.kr
-        </span>
-      </div>
-    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
@@ -368,40 +322,6 @@
           //   document.getElementById('previewImg').src = user.photoURL;
           //   //window.location.reload();
           // }
-          // profile img upload to Firebase
-          fileInput.onchange = () => {
-            const selectedFile = fileInput.files[0];
-            console.log(JSON.parse(user_info).uid);
-            var storageRef = storage.ref();
-            var savingPath = storageRef.child(
-              'profile_image/' +
-                JSON.parse(user_info).uid +
-                '/' +
-                selectedFile.name
-            );
-            var upload = savingPath.put(selectedFile);
-            sessionStorage.setItem('file_name', selectedFile.name);
-            upload.on(
-              'state_changed',
-              // 변화시 동작하는 함수
-              null,
-              //에러시 동작하는 함수
-              (error) => {
-                console.error('실패사유는', error);
-              },
-              // 성공시 동작하는 함수
-              () => {
-                upload.snapshot.ref.getDownloadURL().then((url) => {
-                  console.log('Success! upload path: ', url);
-
-                  var profile_url = { 프로필: url };
-                  db.collection('users').doc(user_uid).update(profile_url);
-                  user.updateProfile({ photoURL: url });
-                  setTimeout('location.reload()', 300);
-                });
-              }
-            );
-          };
         }
 
         // 자기소개 글 파이어베이스에서 받아오기
@@ -421,40 +341,6 @@
           })
           .catch((err) => {
             console.log(err);
-          });
-
-        // 프로필 삭제
-        document
-          .getElementById('profile_delete_btn')
-          .addEventListener('click', (event) => {
-            db.collection('users')
-              .doc(user.uid)
-              .update({ 프로필: firebase.firestore.FieldValue.delete() })
-              .then((result) => {
-                console.log('success');
-                var basic_url =
-                  'https://firebasestorage.googleapis.com/v0/b/capstone2023-57a1c.appspot.com/o/profile_image%2Fbasic_profile_img%2F%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?alt=media&token=fe7d1412-e30a-4396-9034-6b9d2f4a3781';
-                user.updateProfile({ photoURL: basic_url });
-
-                var selectedFile = sessionStorage.getItem('file_name');
-                //var file_name = JSON.parse(selectedFile).file_name;
-                var storageRef = storage.ref();
-                var savingPath = storageRef.child(
-                  'profile_image/' + user.uid + '/' + selectedFile
-                );
-                savingPath
-                  .delete()
-                  .then((result) => {
-                    console.log('storage delete success!');
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-                setTimeout('location.reload()', 300);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
           });
       });
       document

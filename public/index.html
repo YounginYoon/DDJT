@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="./assets/main.css" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./assets/img_slide.css" />
     <style>
       * {
         margin: 0;
@@ -25,19 +26,29 @@
 
       .nav-link {
         color: rgb(73, 73, 73);
-        font-family: 'Noto Sans KR', sans-serif;
-        font-size: large;
-        font-weight: bold;
+        font-family: 'Jua', sans-serif;
+        font-size: 20px;
         text-decoration-line: none;
       }
       .nav-item {
-        margin-top: 8px;
+        margin-top: 5px;
+        font-family: 'Jua', sans-serif;
+      }
+      .card {
+        margin: auto;
+        width: 220px;
+        height: 220px;
+        border: none;
+      }
+      .card-img-top {
+        border-radius: 5px;
+        object-fit: cover;
       }
     </style>
   </head>
   <body>
     <!-- 네비바 start -->
-    <div class="container">
+    <div class="container" style="width: 1500px">
       <ul id="nav2" class="nav justify-content-around bg-white">
         <li class="nav-item-title">
           <a
@@ -46,125 +57,299 @@
             style="
               color: darkorange;
               font-family: 'Jua', sans-serif;
-              font-size: xx-large;
+              font-size: 40px;
+              font-weight: bold;
               text-decoration-line: none;
             "
             >ㄷㄸㅈㅌ</a
           >
         </li>
+        <form
+          class="navbar-form pull-right"
+          role="search"
+          style="width: 450px; margin-top: 10px; margin: auto"
+        >
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control bg-light rounded-start-pill rounded-end-pill"
+              placeholder="어떤 상품을 찾으시나요?"
+              style="font-size: 13px"
+            />
+            <!-- <div class="input-group-btn">
+              <button
+                class="btn bg-light border-1 rounded-end-pill"
+                type="submit"
+              >
+                Search
+              </button>
+            </div> -->
+          </div>
+        </form>
+
         <li class="nav-item">
-          <a class="nav-link" href="login.html" id="index_LoginButton"
+          <a
+            class="nav-link"
+            href="login.html"
+            id="index_LoginButton"
+            style="
+              font-size: 19px;
+              margin-top: 13px;
+              color: rgb(65, 88, 71);
+              font-family: 'Jua', sans-serif;
+            "
             >로그인</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="profile.html" id="Show_Nickname"></a>
-        </li>
-        <li class="nav-item active">
-          <img
-            id="index_profile_img"
-            width="50"
-            height="50"
-            style="border-radius: 100px"
-          />
+          <a
+            class="nav-link"
+            href="join.html"
+            id="index_JoinButton"
+            style="
+              font-size: 19px;
+              margin-top: 13px;
+              color: rgb(65, 88, 71);
+              font-family: 'Jua', sans-serif;
+            "
+            >회원가입</a
+          >
         </li>
         <li class="nav-item">
           <a
             class="nav-link"
+            href="profile.html"
+            id="Show_Nickname"
+            style="font-size: 15px; margin-top: 15px"
+          ></a>
+        </li>
+        <li class="nav-item">
+          <img
+            id="index_profile_img"
+            width="40"
+            height="40"
+            style="border-radius: 100px; margin-top: 15px"
+          />
+        </li>
+        <li class="nav-item" style="margin: auto">
+          <a
+            class="nav-link"
             href=""
             id="index_LogoutButton"
-            style="color: darkgray"
+            style="
+              color: darkgray;
+              font-size: 14px;
+              font-weight: bold;
+              margin-top: 3px;
+              font-family: 'Noto', sans-serif;
+            "
+            ;
             >로그아웃</a
           >
         </li>
-
-        <form
-          class="navbar-form pull-right"
-          role="search"
-          style="margin-top: 10px"
-        >
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" />
-            <div class="input-group-btn">
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </div>
-          </div>
-        </form>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            style="width: 200px; margin-top: 15px; border: 1px solid red"
+            >랭킹</a
+          >
+        </li>
       </ul>
     </div>
     <!-- 네비바 end-->
-    <div class="container">
-      <main role="main" id="main">
-        <article class="one">
-          <h2><a href = "auction_post.html">경매</a></h2>
-          <ul>
-            <li>
-              <a
-                href="https://ticket.interpark.com/webzine/paper/TPNoticeView.asp?bbsno=34&no=45615"
-              >
-                티켓</a
-              >
+
+    <!-- 추가 네비바 start -->
+    <div class="nav justify-content-around bg-white">
+      <div class="row">
+        <div class="col">
+          <ul class="nav nav-tabs">
+            <li
+              class="nav-item active"
+              style="width: 250px; text-align: center"
+            >
+              <a class="nav-link" href="auction_post.html">경매</a>
             </li>
-            <li>
-              <a
-                href="https://smtownandstore.com/product/exo-2022-winter-smtown-smcu-palace-guest-exo/18450/category/1/display/8/"
-              >
-                앨범</a
-              >
+            <li
+              class="nav-item active"
+              style="width: 250px; text-align: center"
+            >
+              <a class="nav-link" href="#">교환</a>
             </li>
-            <li>
+            <li
+              class="nav-item active"
+              style="width: 250px; text-align: center"
+            >
+              <a class="nav-link" href="#">공지사항</a>
+            </li>
+            <li
+              class="nav-item active dropdown"
+              style="width: 250px; text-align: center"
+            >
               <a
-                href="https://smtownandstore.com/product/jisung-artist-birthday-card/19199/category/646/display/1/"
+                class="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                href="#"
+                >커뮤니티</a
               >
-                굿즈</a
-              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">FAQ</a>
+                <a class="dropdown-item" href="#">1:1 문의</a>
+                <a class="dropdown-item" href="#">신고합니다</a>
+              </div>
             </li>
           </ul>
-        </article>
-
-        <article class="two">
-          <h2>교환</h2>
-          <ul>
-            <li><a href="#"> BTS</a></li>
-            <li><a href="#"> SVT</a></li>
-            <li><a href="#"> NCT</a></li>
-            <li><a href="#"> 포카교환하기</a></li>
-          </ul>
-        </article>
-
-        <article class="three">
-          <h2>고객센터</h2>
-          <ul>
-            <li><a href="#"> FQA</a></li>
-            <li><a href="#"> 1:1</a></li>
-          </ul>
-        </article>
-
-        <article class="four">
-          <h2>공지사항</h2>
-          <ul>
-            <li><a href="#"> 공지</a></li>
-          </ul>
-        </article>
-
-        <article class="five">
-          <h2>Rank</h2>
-          <ul>
-            <li><a>박지성부인</a></li>
-            <li><a>유기현일반인여친</a></li>
-            <li><a>영</a></li>
-          </ul>
-        </article>
-
-        <article class="six">
-          <a href="#">
-            <h2>AI추천</h2>
-          </a>
-        </article>
-      </main>
+        </div>
+      </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- 추가 네비바 end -->
+
+    <!-- 광고창 -->
+    <div class="advertisement">
+      <div id="slider">
+        <input type="radio" name="slider" id="slide1" checked />
+        <input type="radio" name="slider" id="slide2" />
+        <input type="radio" name="slider" id="slide3" />
+        <input type="radio" name="slider" id="slide4" />
+        <input type="radio" name="slider" id="slide5" />
+
+        <div id="slides">
+          <div id="overflow">
+            <div class="inner">
+              <div class="slide slide_1">
+                <div class="slide-content">
+                  <h2>Slide1</h2>
+                  <p>Content for Slide 1</p>
+                </div>
+              </div>
+
+              <div class="slide slide_2">
+                <div class="slide-content">
+                  <h2>Slide2</h2>
+                  <p>Content for Slide 2</p>
+                </div>
+              </div>
+
+              <div class="slide slide_3">
+                <div class="slide-content">
+                  <h2>Slide3</h2>
+                  <p>Content for Slide 3</p>
+                </div>
+              </div>
+
+              <div class="slide slide_4">
+                <div class="slide-content">
+                  <h2>Slide4</h2>
+                  <p>Content for Slide 4</p>
+                </div>
+              </div>
+
+              <div class="slide slide_5">
+                <div class="slide-content">
+                  <h2>Slide5</h2>
+                  <p>Content for Slide 5</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="controls">
+          <label for="slide1"></label>
+          <label for="slide2"></label>
+          <label for="slide3"></label>
+          <label for="slide4"></label>
+          <label for="slide5"></label>
+        </div>
+        <div id="bullets">
+          <label for="label1"></label>
+          <label for="label2"></label>
+          <label for="label3"></label>
+          <label for="label4"></label>
+          <label for="label5"></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 추천창 -->
+    <h5
+      style="
+        margin-left: 200px;
+        margin-top: 20px;
+        color: darkorange;
+        font-family: 'Jua', sans-serif;
+      "
+    >
+      돌뜰장터 회원님을<br />
+      위한 추천상품 🎁
+    </h5>
+    <div
+      class="AI_recommendation"
+      style="
+        width: 1200px;
+        height: 450px;
+        /* border: 1px solid blue; */
+        margin: 20px auto;
+        display: flex;
+      "
+    >
+      <div class="col">
+        <div class="card">
+          <img
+            class="card-img-top"
+            src="./assets/시리얼볼.jpg"
+            style="object-fit: cover"
+            alt="..."
+          />
+          <div class="card-body"></div>
+        </div>
+        <div id="object_title" style="text-align: center">
+          굿즈이름<br />남은시간
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img class="card-img-top" src="./assets/시리얼볼.jpg" alt="..." />
+          <div class="card-body"></div>
+        </div>
+        <div id="object_title" style="text-align: center">
+          굿즈이름<br />남은시간
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img class="card-img-top" src="./assets/시리얼볼.jpg" alt="..." />
+          <div class="card-body"></div>
+        </div>
+        <div id="object_title" style="text-align: center">
+          굿즈이름<br />남은시간
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img class="card-img-top" src="./assets/시리얼볼.jpg" alt="..." />
+          <div class="card-body"></div>
+        </div>
+        <div id="object_title" style="text-align: center">
+          굿즈이름<br />남은시간
+        </div>
+      </div>
+    </div>
+    <footer style="height: 300px; background-color: #f8f8f8">
+      <div style="padding: 50px">
+        <p style="color: rgba(70, 70, 70, 0.823); font-size: 13px">
+          (주) 돌뜰장터 정보
+        </p>
+        <span style="font-size: 13px; color: rgb(173, 173, 173)">
+          (주) 돌뜰장터 | 대표자 : 윤영인, 김은원<br />
+          대표번호 : 010-8450-2528<br />
+          플랫폼 : Firebase, Visual Studio Code<br />
+          메일 : duddlsdbs@sogang.ac.kr
+        </span>
+      </div>
+    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
@@ -203,6 +388,7 @@
         var link_uid = '/profile.html?uid=' + JSON.parse(user_info).uid;
         document.getElementById('index_LogoutButton').style.display = 'block';
         document.getElementById('index_LoginButton').style.display = 'none';
+        document.getElementById('index_JoinButton').style.display = 'none';
         document.getElementById('Show_Nickname').href = link_uid;
         document.getElementById('index_profile_img').src =
           JSON.parse(user_info).photoURL;
